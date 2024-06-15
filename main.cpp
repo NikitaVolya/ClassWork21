@@ -1,5 +1,7 @@
 
 #include <iostream>
+#include <limits.h>
+#include <string>
 
 class Fraction
 {
@@ -32,17 +34,24 @@ void Fraction::resize()
 	denominator = denominator / b;
 }
 
-int main()
+
+int autoMath(const std::string& line)
 {
 	try
 	{
-		Fraction a(9, 0);
-		std::cout << a;
+		int a = std::stoi(line);
+		int b = std::stoi(line.substr(line.find('+')));
+		return a + b;
 	}
-	catch (Fraction)
+	catch (std::numeric_limits<int>)
 	{
-		std::cout << "Fraction error";
+		std::cout << "Error with size of integer";
 	}
+}
+
+int main()
+{
+	autoMath("15+52");
 	
 
 	return 0;
